@@ -20,3 +20,10 @@ spec:
           backend:
             serviceName: nginx-load-balancer
             servicePort: 80
+  - host: server2.example.com
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: apache-load-balancer
+            servicePort: 80
