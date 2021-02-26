@@ -27,3 +27,7 @@ spec:
           backend:
             serviceName: apache-load-balancer
             servicePort: 80
+  tls:
+  - hosts:
+    - server1.example.com
+    secretName: tls-secret
