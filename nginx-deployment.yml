@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  replicas: 
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        # volumeMounts:
+        # - name: test
+        #   mountPath: /var/lib/
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "31Mi"
+            cpu: "60m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 20
+      # volumes:
+      # - name: test
+      #   emptyDir: {}
+      #####second container for example#####
+      # - name: tomcat
+      #   image: tomcat
+      #   ports:
+      #   - containerPort: 8080

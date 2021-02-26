@@ -1,0 +1,22 @@
+# apiVersion: networking.k8s.io/v1beta1
+# kind: Ingress
+# metadata:
+#   name: test-ingress
+# spec:
+#   backend:
+#     serviceName: nginx-load-balancer
+#     servicePort: 80
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+spec:
+  rules:
+  - host: server1.example.com
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: nginx-load-balancer
+            servicePort: 80
