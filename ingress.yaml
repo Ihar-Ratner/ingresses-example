@@ -2,13 +2,6 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: test-ingress
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    acme.cert-manager.io/http01-edit-in-place: "true"
-    cert-manager.io/issue-temporary-certificate: "true"
 spec:
   rules:
   - host: ihar.ratner.com
@@ -25,7 +18,3 @@ spec:
           backend:
             serviceName: apache-load-balancer
             servicePort: 80
-  tls:
-   - hosts:
-     - ihar.ratner.com
-     secretName: tls-secret
