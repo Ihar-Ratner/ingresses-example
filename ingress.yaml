@@ -9,14 +9,14 @@ metadata:
   #   nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
-  - host: server1.example.com
+  - host: ihar.ratner.com
     http:
       paths:
         - path: /
           backend:
             serviceName: nginx-load-balancer
             servicePort: 80
-  - host: server2.example.com
+  - host: ratner.ihar.com
     http:
       paths:
         - path: /
