@@ -18,9 +18,6 @@ spec:
       containers:
       - name: apache
         image: httpd:2.4
-        # volumeMounts:
-        # - name: test
-        #   mountPath: /var/lib/
         ports:
         - containerPort: 80
         resources:
@@ -41,11 +38,3 @@ spec:
             port: 80
           initialDelaySeconds: 15
           periodSeconds: 20
-      # volumes:
-      # - name: test
-      #   emptyDir: {}
-      #####second container for example#####
-      # - name: tomcat
-      #   image: tomcat
-      #   ports:
-      #   - containerPort: 8080
