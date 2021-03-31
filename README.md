@@ -12,8 +12,6 @@ kubectl apply -f issuer.yaml
 ```
 # external DNS
 ```
-helm install my-release bitnami/external-dns
-
 kubectl create ns external-dns
 
 gcloud projects add-iam-policy-binding driven-manifest-306006 \
@@ -33,7 +31,19 @@ helm install external-dns \
   --set domainFilters[0]=ratner.ml \
   --set google.serviceAccountSecretKey=external-dns \
   --set rbac.create=true \
-  -- set logLevel=debug \
+  --set logLevel=debug \
   -n external-dns \
   bitnami/external-dns
-  ```
+
+
+kubectl logs -f `kubectl get pods -n external-dns -o jsonpath="{.items[0].metadata.name}"` -n external-dns
+```
+
+# ambassador example
+```
+kubectl create namespace ambassador
+helm repo add datawire https://www.getambassador.io
+helm repo update
+helm install ambassador --namespace ambassador datawire/ambassador
+kubectl apply -f ambassador-example.yml
+```
